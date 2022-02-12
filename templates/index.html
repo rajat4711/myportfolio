@@ -1,0 +1,285 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<!-- navbar section ends -->
+
+<!-- home section starts  -->
+
+<section class="home" id="home">
+     {% for i in Name %}
+    <div class="image">
+        <img src="media/{{i.your_image}}" alt="">
+    </div>
+
+    <div class="content">
+        <h3>hi, i am <span id="myname">{{ i.salutation }}</span></h3>
+              <span id ="st">I'M A <span class="txt-rotate" data-period="20" data-rotate='[ "{{i.skills1}}", "{{i.skills2}}", "{{i.skills3}}", "{{i.skills4}}" ]'> i am </span></span>
+
+        <p>{{i.desc|safe}}</p>
+        <a href="#about" class="btn"> about me <i class="fas fa-user"></i> </a>
+    </div>
+	</div>
+{% endfor %}
+</section>
+
+<!-- home section ends -->
+<section class="about" id="about">
+
+    <h1 class="heading"> about <span>me</span> </h1>
+
+    <div class="row">
+          {% for about in intro %}
+        <div class="info-container">
+
+            <h1>personal info</h1>
+
+            <div class="box-container">
+				<p>{{about.about_you|safe}}</p>	
+                <div class="box">
+                    <h3> <span>name : </span> {{about.display_Name}} </h3>
+                    <h3> <span>Date of Birth </span> {{about.Date_of_Birth}} </h3>
+                    <h3> <span>email : </span> {{about.email}} </h3>
+					 <h3> <span>website : </span> {{about.website}}</h3>
+                    <h3> <span>address : </span> {{about.Adress}} </h3>
+                </div>
+    
+                <div class="box">
+					<h3> <span>Mobile No : {{about.Phone}}</span> </h3>
+                    <h3> <span>freelance : </span> available </h3>
+                    <h3> <span>skill : </span> {{about.Degree}} </h3>
+                    <h3> <span>experience : </span> {{about.Experience}} </h3>
+					<h3> <span>Gender: </span>{{about.sex}}</h3>
+                    <h3> <span>language : </span> {{about.First_language}}, english </h3>
+                </div>
+
+            </div>
+
+            <a href="media/{{about.Resume}}" download class="btn"> download CV <i class="fas fa-download"></i> </a>
+
+        </div>
+		
+
+        <div class="count-container">
+
+            <div class="box" id="experience" >
+                <h3 >{{about.Experience}}+</h3>
+                <p >years of experience</p>
+            </div>
+
+            <div class="box" id="experience">
+                <h3>{{about.Clients}}+</h3>
+                <p>happy clients</p>
+            </div>
+
+            <div class="box" id="experience">
+                <h3>{{about.Projects}}+</h3>
+                <p>project completed</p>
+            </div>
+
+            <div class="box" id="experience">
+                <h3>{{about.Awards}}+</h3>
+                <p>awards won</p>
+            </div>
+
+        </div>
+     {% endfor %}
+    </div>
+
+</section>
+
+<!-- about section ends -->
+
+<!-- skills section starts  -->
+
+<section class="skills" id="skills">
+
+    <h1 class="heading"> <span>my</span> skills </h1>
+
+    <div class="box-container">
+	{% for skill in skill %}
+        <div class="box">
+            <img src="/media/{{skill.icon}}">
+            <h3>{{skill.skills_title}}</h3>
+        </div>
+        
+       	{% endfor %} 
+        
+        
+    </div>
+
+</section>
+
+<!-- skills section ends -->
+
+<!-- education section starts  -->
+
+<section class="education" id="education">
+
+    <h1 class="heading"> <span>my</span> education </h1>
+
+    <div class="box-container">
+		{% for edu in education %}
+        <div class="box">
+            <i class="fas fa-graduation-cap"></i>
+            <span>{{edu.strt_year1}} - {{edu.end_year1}}</span>
+            <h3>{{edu.course_name}}</h3>
+            <p>{{edu.course_desc|safe}}</p>
+        </div>
+    {% endfor %}
+        
+    </div>
+
+</section>
+
+<!-- my experience-->
+<section class="education" id="education">
+
+    <h1 class="heading"> <span>my</span> experience </h1>
+
+    <div class="box-container">
+		{% for exp in experience %}
+        <div class="box">
+            <i class="fas fa-graduation-cap"></i>
+            <span>{{exp.strt_year}} - {{exp.end_year}}</span>
+            <h3>{{exp.exp_title}}</h3>
+            <p>{{exp.exp_desc|safe}}</p>
+        </div>
+    {% endfor %}
+        
+    </div>
+
+</section>
+<!--end of experience-->
+<section class="portfolio" id="portfolio">
+
+    <h1 class="heading"> <span>my</span> work </h1>
+
+    <div class="box-container">
+		{% for projects in project reversed %}
+        <div class="box">
+		
+            <img src="/media/{{projects.Portfolio_picture}}" alt="">
+            <div class="content">
+                <h3>project-{{projects.project_no}} </h3>
+                <p>{{projects.project_desc}}</p>
+                <a href="{{projects.links}}">read more</a>
+            </div>
+        </div>
+		{% endfor %} 
+        </div>
+
+    </div>
+
+    <a href="/mywork" class="btn"> load more <i class="fas fa-redo"></i> </a>
+    
+</section>
+
+<!-- portfolio section ends -->
+<!--blog section start-->
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>my</span> blogs </h1>
+
+    <div class="box-container">
+        {% for blog in blogs %}
+        <div class="box">
+            <div class="image">
+                <img src="/media/{{blog.feature_image}}" alt="">
+            </div>
+            <div class="content">
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i>{{blog.date_added}}</a>
+                    <a href="#"> <i class="fas fa-user"></i> by {{blog.author_name}} </a>
+                </div>
+                <h3>{{blog.title}}</h3>
+                <p>{{blog.desc|safe| truncatechars:100}}</p>
+                <a href="{% url 'blog_detail' blog.slug %}" class="btn"> read more <i class="fas fa-link"></i> </a>
+            </div>
+        </div>
+        {% endfor %}
+    </div>.
+
+</section>
+<!--blog section end--->
+
+<section class="contact" id="contact">
+
+<h1 class="heading"> contact <span>me</span> </h1>
+
+<div class="row">
+
+    <div class="info-container">
+
+        <h1>get in touch</h1>
+{% for c in contacts %}
+        <p> {{c.some_text}}</p>
+
+        <div class="box-container">
+           
+            <div class="box">
+                <i class="fas fa-map"></i>
+                <div class="info">
+                    <h3>address :</h3>
+                    <p>{{c.office}}</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-envelope"></i>
+                <div class="info">
+                    <h3>email :</h3>
+                    <p>{{c.email_id}}</p>
+                </div>
+            </div>
+
+            <div class="box">
+                <i class="fas fa-phone"></i>
+                <div class="info">
+                    <h3>number :</h3>
+                    <p>+91 {{c.contact_no}}</p>
+                </div>
+            </div>
+			
+        </div>
+
+        <div class="share">
+            <a href="{{c.facebook}}" class="fab fa-facebook-f"></a>
+            <a href="{{c.twitter}}" class="fab fa-twitter"></a>
+            <a href="{{c.instagram}}" class="fab fa-instagram"></a>
+            <a href="{{c.linkedin}}" class="fab fa-linkedin"></a>
+        </div>
+			{% endfor %}
+    </div>
+
+    <form method="POST" >
+		{% csrf_token %}
+
+        <div class="inputBox">
+            <input type="text" name="Name1" placeholder="your name">
+            <input type="number" name="sender_mobile" placeholder="your number">
+        </div>
+
+        <div class="inputBox">
+            <input type="email" name="mails" placeholder="your email">
+            <input type="text" name="subject" placeholder="your subject">
+        </div>
+
+        <textarea name="text2" placeholder="your message" id="" cols="30" rows="10"></textarea>
+
+        <input type="submit" value="send message" class="btn">
+
+    </form>
+
+</div>
+
+</section>
+
+<!-- contact section ends -->
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/typed.js/2.0.12/typed.min.js" referrerpolicy="no-referrer"></script>
+  
+
+
+  <script src="/static/js/style-switcher.js"></script>
+	<script src="/static/js/script1.js"></script>
+{% endblock %}

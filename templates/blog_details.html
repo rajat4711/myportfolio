@@ -1,0 +1,31 @@
+{% extends "navbar.html" %}
+{% block content %}
+<!-- navbar section ends -->
+
+<!-- portfolio section starts  -->
+
+<section class="blogs" id="blogs">
+
+    <h1 class="heading"> <span>my</span> blogs </h1>
+
+    <div class="box-container">
+        
+        <div class="box">
+            <div class="image">
+                <img src="/media/{{bl.feature_image}}" alt="">
+            </div>
+            <div class="content">
+                <div class="icons">
+                    <a href="#"> <i class="fas fa-calendar"></i>{{bl.date_added}}</a>
+                    <a href="#"> <i class="fas fa-user"></i> by {{bl.author_name}} </a>
+                </div>
+                <h3>{{bl.title}}</h3>
+                <p>{{bl.desc|safe}}</p>
+            </div>
+        </div>
+        
+    </div>
+
+</section>
+
+{% endblock %}

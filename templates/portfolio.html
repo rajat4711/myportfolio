@@ -1,0 +1,23 @@
+{% extends "navbar.html" %}
+{% block content %}
+
+<section class="portfolio" id="portfolio">
+
+    <h1 class="heading"> <span>my</span> work </h1>
+
+    <div class="box-container">
+		{% for projects in mywork reversed %}
+        <div class="box">
+		
+            <img src="/media/{{projects.Portfolio_picture}}" alt="">
+            <div class="content">
+                <h3>project-{{projects.project_no}} </h3>
+                <p>{{projects.projects_desc}}</p>
+                <a href="{{projects.links}}">read more</a>
+            </div>
+        </div>
+		{% endfor %} 
+        </div>
+
+    </div>
+{% endblock %}
